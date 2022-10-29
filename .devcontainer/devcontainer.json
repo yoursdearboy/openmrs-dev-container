@@ -1,0 +1,11 @@
+{
+	"name": "OpenMRS",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"docker-compose.yml"
+	],
+	"service": "web",
+	"workspaceFolder": "/workspace",
+	"forwardPorts": [8080, 1044, 3306],
+	"remoteUser": "root"
+}

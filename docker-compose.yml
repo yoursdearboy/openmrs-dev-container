@@ -1,4 +1,3 @@
-# Generated automatically by openmrs SDK
 version: '2'
 
 services:
@@ -15,8 +14,7 @@ services:
       - db-data:/var/lib/mysql
 
   web:
-    build: web
-    image: <distro>:<tag>
+    image: ${DISTRO}:${TAG}
     depends_on:
       - db
     environment:
@@ -24,13 +22,11 @@ services:
       DB_HOST: db
       DB_USERNAME: openmrs
       DB_PASSWORD: Admin123
-      DB_CREATE_TABLES: 'false'  # change to 'true' if using an empty database
-      DB_AUTO_UPDATE: 'false'    # change to 'true' if using an empty database
-      MODULE_WEB_ADMIN: 'true'   # allow web admin on OpenMRS
+      DB_CREATE_TABLES: 'true'  # change to 'true' if using an empty database
+      DB_AUTO_UPDATE: 'true'    # change to 'true' if using an empty database
+      MODULE_WEB_ADMIN: 'true'  # allow web admin on OpenMRS
     volumes:
       - web-data:/usr/local/tomcat/.OpenMRS
-      - /usr/local/tomcat/.OpenMRS/modules/ # used to mount persistent docker volume for modules
-      - /usr/local/tomcat/.OpenMRS/owa/     # used to mount persistent docker volume for owa
 
 volumes:
   db-data:
