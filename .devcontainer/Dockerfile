@@ -1,4 +1,4 @@
-FROM tomcat:7-jre8
+FROM tomcat:7-jdk8
 
 ARG VERSION
 
@@ -11,8 +11,10 @@ RUN apt-get update \
  && apt-get install -y \
     docker-ce-cli \
     git \
+    maven \
  && rm -rf /var/lib/apt/lists/*
 
+RUN mvn --batch-mode org.openmrs.maven.plugins:openmrs-sdk-maven-plugin:setup-sdk
 
 ADD https://sourceforge.net/projects/openmrs/files/releases/OpenMRS_Platform_${VERSION}/openmrs.war/download /usr/local/tomcat/webapps/openmrs.war
 
